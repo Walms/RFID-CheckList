@@ -36,6 +36,6 @@ IMPORTANT DISCLAIMER: WIEGAND READERS USE 5V DC, WHILE THE RASPBERRY PI IS A 3.3
 
 With this in mind, please look at the protection circuit very carefully:
 
-![alt tag](http://url/to/img.png)
+![alt tag](RFID-CheckList / doc / ProtectionCircuit.jpg)
 
 The protection needs to be applied to both the Data0 and Data1 connections. The GPIO pins I use in my example code are pins 0 and 1. Your Wiegand reader will obviously require 12V, for which I use an external power supply. 
