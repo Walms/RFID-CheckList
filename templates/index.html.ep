@@ -1,0 +1,31 @@
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>RFID-CheckList</title>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+   $('#container').on("click", function(){alert(event.target.id)});
+});
+</script>
+</head>
+<body>
+
+<div id="container">
+//Elements here appear dynamically
+   <div id="id1">hulk</div>
+   <div id="id2">rambo</div>
+</div>
+
+<!-- <select multiple class="form-control">
+  <option>1</option>
+  <option>2<span class="badge">3</span></option>
+  <option><a href="#">Inbox <span class="badge">42</span></a></option>
+  <option>4</option>
+  <option>5</option>
+</select>
+<a href="#">Inbox <span class="badge">42</span></a> -->
+
+</body>
+</html>
