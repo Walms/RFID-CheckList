@@ -1,35 +1,27 @@
 RFID-CheckList
 ==============
 
-sudo apt-get update && sudo apt-get upgrade
-
 # GPIO library for raspberry pi
-cd /tmp
 
-wget http://project-downloads.drogon.net/files/wiringPi.tgz
+sudo apt-get update && sudo apt-get upgrade -y
 
-tar xfz wiringPi.tgz
+git clone git://git.drogon.net/wiringPi
 
-cd wiringPi/wiringPi
+cd wiringPi
 
-make
-
-sudo make install
-
-cd ../gpio
-
-make
-
-sudo make install
+./build
 
 # Widegand sample code installation
-wget http://pidoorman.com/wiegand.c
+
+cd
+
+wget http://tonigor.com/pidoorman/wiegand.c
 
 cc -o wiegand wiegand.c -L/usr/local/lib -lwiringPi -lpthread
 
 You will then be able to run the program:
 
-sudo /wiegand
+sudo ./wiegand
 
 # Hardware Wiring
 IMPORTANT DISCLAIMER: WIEGAND READERS USE 5V DC, WHILE THE RASPBERRY PI IS A 3.3V DEVICE. IF YOU CHOOSE TO FOLLOW THESE INSTRUCTIONS, I CAN TAKE NO RESPONSIBILITY IF YOU BLOW UP YOUR RASPBERRY PI.
