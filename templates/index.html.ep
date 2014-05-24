@@ -1,31 +1,56 @@
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>RFID-CheckList</title>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>RFID-CheckList</title>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-$(function(){
-   $('#container').on("click", function(){alert(event.target.id)});
-});
-</script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+           $('#selector').on("click", function(){alert(event.target.id)});
+        });
+    </script>
 </head>
 <body>
 
-<div id="container">
-//Elements here appear dynamically
-   <div id="id1">hulk</div>
-   <div id="id2">rambo</div>
-</div>
+<div class="container">
 
-<!-- <select multiple class="form-control">
-  <option>1</option>
-  <option>2<span class="badge">3</span></option>
-  <option><a href="#">Inbox <span class="badge">42</span></a></option>
-  <option>4</option>
-  <option>5</option>
-</select>
-<a href="#">Inbox <span class="badge">42</span></a> -->
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">How to ?</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">RFID Check List</h3>
+    </div>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <h4>Selection List</h4>
+            <p>
+                <select multiple class="form-control" id="selector">
+                  <option id="Item1">Item1</option>
+                  <option id="Item2">Item2</option>
+                  <option id="Item3">Item3</option>
+                  <option id="Item4">Item4</option>
+                  <option id="Item5">Item5</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="col-lg-6">
+            <h4>Check-In List</h4>
+            <p>Inbox <span class="badge">42</span></p>
+        </div>
+    </div> 
+
+</div>
 
 </body>
 </html>
