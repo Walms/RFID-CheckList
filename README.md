@@ -23,6 +23,19 @@ You will then be able to run the program:
 
 sudo ./wiegand
 
+# Database
+
+Below command will ask you to set mysql root password set it to 123456
+
+sudo apt-get install mysql-server libmysqlclient-dev
+
+# Perl WebServer 
+
+sudo apt-get install libMojolicious-perl
+
+sudo apt-get install libdbd-mysql-perl
+
+
 # Hardware Wiring
 IMPORTANT DISCLAIMER: WIEGAND READERS USE 5V DC, WHILE THE RASPBERRY PI IS A 3.3V DEVICE. IF YOU CHOOSE TO FOLLOW THESE INSTRUCTIONS, I CAN TAKE NO RESPONSIBILITY IF YOU BLOW UP YOUR RASPBERRY PI.
 
