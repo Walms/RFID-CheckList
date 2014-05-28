@@ -34,12 +34,15 @@
         <div class="col-lg-6">
             <h4>Selection List</h4>
             <p>
+
+
+
                 <select multiple class="form-control" id="selector">
-                  <option id="Item1">Item1</option>
-                  <option id="Item2">Item2</option>
-                  <option id="Item3">Item3</option>
-                  <option id="Item4">Item4</option>
-                  <option id="Item5">Item5</option>
+                    
+                    % foreach my $row (@$allItemsRef) {
+                        <option id="<%= @$row[0] %>"><%= @$row[1] %>, <%= @$row[2] %>, <%= @$row[3] %></option>
+                    % }
+
                 </select>
             </p>
         </div>
