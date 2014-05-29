@@ -35,6 +35,13 @@ sudo apt-get install libMojolicious-perl
 
 sudo apt-get install libdbd-mysql-perl
 
+git clone https://github.com/ebulanik/RFID-CheckList.git
+
+cd RFID-CheckList
+
+./INSTALL.sh
+
+Open a browser page on the local network and connect to  http://IpAdress:3000
 
 # Hardware Wiring
 IMPORTANT DISCLAIMER: WIEGAND READERS USE 5V DC, WHILE THE RASPBERRY PI IS A 3.3V DEVICE. IF YOU CHOOSE TO FOLLOW THESE INSTRUCTIONS, I CAN TAKE NO RESPONSIBILITY IF YOU BLOW UP YOUR RASPBERRY PI.
