@@ -1,4 +1,5 @@
 sudo cp exampleDatabaseEntries.csv /var/lib/mysql/RFID_CheckList
+wait
 mysql -uroot -p123456 -e "CREATE DATABASE IF NOT EXISTS RFID_CheckList"
 mysql -uroot -p123456 -e "DROP TABLE itemList" RFID_CheckList
 mysql -uroot -p123456 -e "CREATE TABLE IF NOT EXISTS itemList (tagNumber INT, equipmentType VARCHAR(50), Maker VARCHAR(50), Model VARCHAR(50), serialNumber VARCHAR(50), tmpListCnt INT)" RFID_CheckList
