@@ -4,16 +4,33 @@
     <title>RFID-CheckList</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
         $(function(){
-           $('#selector').on("click", function(){alert(event.target.id)});
+
+            $(document).ready ( function(){
+                                            $.get("tmpListAddPrint", {itemNo: 0}, function(data){
+                                                document.getElementById("tmpListHtml").innerHTML = data;
+                                            }); 
+                                        });
+
+            $('#selector').on("click", function(){
+                                                    $.get("tmpListAddPrint", {itemNo: event.target.id, action: "inc"}, function(data){
+                                                        document.getElementById("tmpListHtml").innerHTML = data;
+                                                    });
+                                                });
+
+            $('#tmpListHtml').on("click", function(){
+                                                    $.get("tmpListAddPrint", {itemNo: event.target.id, action: "dec"}, function(data){
+                                                        document.getElementById("tmpListHtml").innerHTML = data;
+                                                    });
+                                                });
         });
     </script>
 </head>
@@ -34,10 +51,7 @@
         <div class="col-lg-6">
             <h4>Selection List</h4>
             <p>
-
-
-
-                <select multiple class="form-control" id="selector">
+                <select multiple class="form-control" id="selector" size="20">
                     
                     % foreach my $row (@$allItemsRef) {
                         <option id="<%= @$row[0] %>"><%= @$row[1] %>, <%= @$row[2] %>, <%= @$row[3] %></option>
@@ -49,7 +63,7 @@
 
         <div class="col-lg-6">
             <h4>Check-In List</h4>
-            <p>Inbox <span class="badge">42</span></p>
+            <p id="tmpListHtml"></p>
         </div>
     </div> 
 
