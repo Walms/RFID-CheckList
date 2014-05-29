@@ -1,4 +1,4 @@
-sudo cp ~/exampleDatabaseEntries.csv /var/lib/mysql/RFID_CheckList
+sudo cp exampleDatabaseEntries.csv /var/lib/mysql/RFID_CheckList
 mysql -uroot -p123456 -e "CREATE DATABASE IF NOT EXISTS RFID_CheckList"
 mysql -uroot -p123456 -e "DROP TABLE itemList" RFID_CheckList
 mysql -uroot -p123456 -e "DROP TABLE tmpList" RFID_CheckList
