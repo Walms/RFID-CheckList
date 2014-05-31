@@ -4,11 +4,11 @@
     <title>RFID-CheckList</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
@@ -17,7 +17,7 @@
             $(document).ready ( function(){
                                             $.get("tmpListAddPrint", {itemNo: 0}, function(data){
                                                 document.getElementById("tmpListHtml").innerHTML = data;
-                                            }); 
+                                            }); //netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js
                                         });
 
             $('#selector').on("click", function(){
@@ -27,7 +27,10 @@
                                                 });
 
             $('#tmpListHtml').on("click", function(){
-                                                    $.get("tmpListAddPrint", {itemNo: event.target.id, action: "dec"}, function(data){
+                                                    var msg = event.target.id
+                                                    var cmd = msg.substr(0, 3);
+                                                    var id = msg.substr(3);
+                                                    $.get("tmpListAddPrint", {itemNo: id, action: cmd}, function(data){
                                                         document.getElementById("tmpListHtml").innerHTML = data;
                                                     });
                                                 });
@@ -62,8 +65,25 @@
         </div>
 
         <div class="col-lg-6">
-            <h4>Check-In List</h4>
-            <p id="tmpListHtml"></p>
+            <h4>Check List</h4>
+            <div class="panel panel-default">
+            <!-- Table -->
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Item</th>
+                    <th>Tag Detected</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="tmpListHtml">
+                </tbody>
+
+            </table>
+            </div>
+
         </div>
     </div> 
 

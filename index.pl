@@ -31,6 +31,9 @@ any '/tmpListAddPrint' => sub {
         } 
         elsif  ($action eq "dec") {
             itemListUpdate($itemNo, "tmpListCnt = tmpListCnt - 1");
+        } 
+        elsif  ($action eq "del") {
+            itemListUpdate($itemNo, "tmpListCnt = 0");
         }
     }
 
@@ -39,8 +42,31 @@ any '/tmpListAddPrint' => sub {
 
     my $tmpListPrint = "";
 
+    my $listNum = 1;
     foreach my $row (@tmpList) {
-      $tmpListPrint = $tmpListPrint . "<span id=@$row[0]> @$row[1] </span><span id=@$row[0] class=\"badge\">@$row[5]</span><br>";
+        
+        my $itemStatus;
+        if (@$row[6] == @$row[5]) {
+            $itemStatus = "<span class=\"label label-success\">Good to Go</span>";
+        } elsif (@$row[6] > @$row[5]) {
+            $itemStatus = "<span class=\"label label-danger\">Excessive Items</span>";
+        } else {
+            $itemStatus = "<span class=\"label label-warning\">Missing Items</span>";
+        }
+
+
+        $tmpListPrint = $tmpListPrint . "<tr>
+                                           <td>$listNum</td>
+                                           <td>@$row[1]</td>
+                                           <td>@$row[6] out of @$row[5]
+                                             <span id=inc@$row[0] class=\"glyphicon glyphicon-circle-arrow-up\"></span>
+                                             <span id=dec@$row[0] class=\"glyphicon glyphicon-circle-arrow-down\"></span>
+                                             <span id=del@$row[0] class=\"glyphicon glyphicon-remove-sign\"></span>
+                                           </td>
+                                           <td>$itemStatus</td>
+                                         </tr>";
+
+        $listNum++;
     }
 
     $self->render(text => $tmpListPrint);
@@ -86,7 +112,7 @@ sub itemListGet() {
     my @row;
     my $table_row = 0;
     while (@row = $sth->fetchrow_array) {  # retrieve one row
-        #print join(", ", @row), "\n";
+
         $ { $array_ref }[$table_row] = [@row];
         $table_row++;
     }
