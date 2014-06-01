@@ -15,25 +15,17 @@
         $(function(){
 
             $(document).ready ( function(){
-                                            $.get("tmpListAddPrint", {itemNo: 0}, function(data){
-                                                document.getElementById("tmpListHtml").innerHTML = data;
+                                            $.get("selectedListPrint", {itemNo: 0}, function(data){
+                                                document.getElementById("selectedListHtml").innerHTML = data;
                                             }); //netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js
                                         });
 
             $('#selector').on("click", function(){
-                                                    $.get("tmpListAddPrint", {itemNo: event.target.id, action: "inc"}, function(data){
-                                                        document.getElementById("tmpListHtml").innerHTML = data;
+                                                    $.get("selectedListPrint", {itemNo: event.target.id, action: "inc"}, function(data){
+                                                        document.getElementById("selectedListHtml").innerHTML = data;
                                                     });
                                                 });
 
-            $('#tmpListHtml').on("click", function(){
-                                                    var msg = event.target.id
-                                                    var cmd = msg.substr(0, 3);
-                                                    var id = msg.substr(3);
-                                                    $.get("tmpListAddPrint", {itemNo: id, action: cmd}, function(data){
-                                                        document.getElementById("tmpListHtml").innerHTML = data;
-                                                    });
-                                                });
         });
     </script>
 </head>
@@ -43,33 +35,34 @@
 
     <div class="header">
         <ul class="nav nav-tabs pull-right">
-            <li class="active"><a href="/">Create List</a></li>
-            <li><a href="RFID_checkOut">RFID Check-out</a></li>
+            <li><a href="/">Create List</a></li>
+            <li class="active"><a href="RFID_checkOut">RFID Check-out</a></li>
             <li><a href="#">How to ?</a></li>
         </ul>
         <h3 class="text-muted">RFID Check List</h3>
     </div>
 
     <div class="row marketing">
-        <div class="col-lg-6">
-            <h4>All Items</h4>
+        <div class="col-lg-4">
+            <h4>Lists to Check Out</h4>
             <p>
                 <select multiple class="form-control" id="selector" size="20">
-                    
+                    % my $listCnt = 1;
                     % foreach my $row (@$allItemsRef) {
-                        <option id="<%= @$row[0] %>"><%= @$row[1] %>, <%= @$row[2] %>, <%= @$row[3] %></option>
+                        <option>List <%= $listCnt %></option>
+                    % $listCnt++;
                     % }
 
                 </select>
             </p>
         </div>
 
-        <div class="col-lg-6">
-            <h4>Draft List</h4>
+        <div class="col-lg-8">
+            <h4>List 2</h4>
             <div class="panel panel-default">
               <div align="right" class="panel-body">
                 <button type="button" class="btn btn-default">
-                  <span class="glyphicon glyphicon-floppy-disk"></span> Save
+                  <span class="glyphicon glyphicon-floppy-saved"></span> Check Out
                 </button>
               </div>
             <!-- Table -->
@@ -79,10 +72,11 @@
                   <tr>
                     <th>#</th>
                     <th>Item</th>
-                    <th>Quantity</th>
+                    <th>Detected Quantity</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
-                <tbody id="tmpListHtml">
+                <tbody id="selectedListHtml">
                 </tbody>
 
             </table>

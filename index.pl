@@ -45,6 +45,37 @@ any '/tmpListAddPrint' => sub {
     my $listNum = 1;
     foreach my $row (@tmpList) {
         
+
+        $tmpListPrint = $tmpListPrint . "<tr>
+                                           <td>$listNum</td>
+                                           <td>@$row[1]</td>
+                                           <td>@$row[5] 
+                                             <span id=inc@$row[0] class=\"glyphicon glyphicon-circle-arrow-up\"></span>
+                                             <span id=dec@$row[0] class=\"glyphicon glyphicon-circle-arrow-down\"></span>
+                                             <span id=del@$row[0] class=\"glyphicon glyphicon-remove-sign\"></span>
+                                           </td>
+                                         </tr>";
+
+        $listNum++;
+    }
+
+    $self->render(text => $tmpListPrint);
+
+};
+
+
+any '/selectedListPrint' => sub {
+
+    my $self = shift;  
+
+    my @tmpList;
+    itemListGet(\@tmpList, "WHERE tmpListCnt > 0");
+
+    my $tmpListPrint = "";
+
+    my $listNum = 1;
+    foreach my $row (@tmpList) {
+        
         my $itemStatus;
         if (@$row[6] == @$row[5]) {
             $itemStatus = "<span class=\"label label-success\">Good to Go</span>";
@@ -58,11 +89,7 @@ any '/tmpListAddPrint' => sub {
         $tmpListPrint = $tmpListPrint . "<tr>
                                            <td>$listNum</td>
                                            <td>@$row[1]</td>
-                                           <td>@$row[6] out of @$row[5]
-                                             <span id=inc@$row[0] class=\"glyphicon glyphicon-circle-arrow-up\"></span>
-                                             <span id=dec@$row[0] class=\"glyphicon glyphicon-circle-arrow-down\"></span>
-                                             <span id=del@$row[0] class=\"glyphicon glyphicon-remove-sign\"></span>
-                                           </td>
+                                           <td>@$row[6] out of @$row[5]</td>
                                            <td>$itemStatus</td>
                                          </tr>";
 
@@ -73,6 +100,20 @@ any '/tmpListAddPrint' => sub {
 
 };
 
+any '/RFID_checkOut' => sub {
+
+    my @allItems;
+    itemListGet(\@allItems, "");
+
+    my $self = shift;
+
+    $self->stash(
+                allItemsRef => \@allItems
+                );
+    
+    $self->render('RFID_checkOut');
+    
+};
 
 app->start;
 
